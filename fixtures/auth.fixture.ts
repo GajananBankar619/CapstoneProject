@@ -58,11 +58,11 @@ export function createAuthFixtures() {
       await context.close();
     },
 
-    authUserEmail: async ({}: Record<string, never>, use: (r: string) => Promise<void>) => {
+    authUserEmail: async ({}, use: (r: string) => Promise<void>) => {
       await use('');
     },
 
-    authUserName: async ({}: Record<string, never>, use: (r: string) => Promise<void>) => {
+    authUserName: async ({}, use: (r: string) => Promise<void>) => {
       const userData = loadTestData<UserTestData[]>('users.json')[0];
       await use(userData.name);
     },

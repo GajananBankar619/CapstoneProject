@@ -88,6 +88,7 @@ test.describe('User Authentication', () => {
 
     await loginPage.clickLogout();
     await expect(page).toHaveURL(/\/login/);
+    await expect(loginPage.getLoginFormHeading()).toBeVisible();
     await expect(loginPage.getLoginFormHeading()).toContainText('Login to your account');
 
     await deleteUserViaApi(request, email, userData.password);

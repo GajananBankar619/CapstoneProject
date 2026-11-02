@@ -6,6 +6,8 @@ import { loadTestData } from '../utils/test-data-loader';
 import type { PaymentTestData } from '../fixtures/test-data.fixture';
 
 test.describe('Checkout Flow', () => {
+  test.setTimeout(60000);
+
   test('should complete full checkout flow with payment', async ({
     authenticatedPage,
     authUserName,

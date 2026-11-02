@@ -4,29 +4,9 @@
 import { APIRequestContext } from '@playwright/test';
 import { envConfig } from '../config/env.config';
 
-interface CreateAccountParams {
-  name: string;
-  email: string;
-  password: string;
-  title: string;
-  birth_date: string;
-  birth_month: string;
-  birth_year: string;
-  firstname: string;
-  lastname: string;
-  company: string;
-  address1: string;
-  address2: string;
-  country: string;
-  state: string;
-  city: string;
-  zipcode: string;
-  mobile_number: string;
-}
-
 export async function createUserViaApi(
   request: APIRequestContext,
-  params: CreateAccountParams,
+  params: Record<string, string>,
 ): Promise<void> {
   await request.post(`${envConfig.baseUrl}/api/createAccount`, {
     form: params,

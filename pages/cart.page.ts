@@ -38,7 +38,7 @@ export class CartPage extends BasePage {
   }
 
   async removeProduct(productId: number): Promise<void> {
-    await this.page.locator(`#product-${productId} .cart_quantity_delete a`).click();
+    await this.page.locator(`#product-${productId} .cart_delete a`).click();
     await this.page.locator(`#product-${productId}`).waitFor({ state: 'detached' });
   }
 

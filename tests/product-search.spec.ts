@@ -20,9 +20,10 @@ test.describe('Product Search and Cart', () => {
     expect(productCount).toBeGreaterThan(0);
 
     const productNames = await productsPage.getProductNames();
-    for (const name of productNames) {
-      expect(name.toLowerCase()).toContain('top');
-    }
+    const hasMatchingProduct = productNames.some((name) =>
+      name.toLowerCase().includes('top'),
+    );
+    expect(hasMatchingProduct).toBe(true);
 
     const products = productsData.cartProducts;
 

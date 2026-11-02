@@ -64,16 +64,16 @@ export interface TestDataFixtures {
 
 export function createTestDataFixtures() {
   return {
-    usersData: async ({}: Record<string, never>, use: (r: UserTestData[]) => Promise<void>) => {
+    usersData: async ({}, use: (r: UserTestData[]) => Promise<void>) => {
       await use(loadTestData<UserTestData[]>('users.json'));
     },
-    productsData: async ({}: Record<string, never>, use: (r: ProductsTestData) => Promise<void>) => {
+    productsData: async ({}, use: (r: ProductsTestData) => Promise<void>) => {
       await use(loadTestData<ProductsTestData>('products.json'));
     },
-    paymentData: async ({}: Record<string, never>, use: (r: PaymentTestData) => Promise<void>) => {
+    paymentData: async ({}, use: (r: PaymentTestData) => Promise<void>) => {
       await use(loadTestData<PaymentTestData>('payment.json'));
     },
-    contactData: async ({}: Record<string, never>, use: (r: ContactTestData[]) => Promise<void>) => {
+    contactData: async ({}, use: (r: ContactTestData[]) => Promise<void>) => {
       await use(loadTestData<ContactTestData[]>('contact.json'));
     },
   };

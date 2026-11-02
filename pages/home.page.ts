@@ -18,6 +18,7 @@ export class HomePage extends BasePage {
   }
 
   async addProductToCartById(productId: number): Promise<void> {
+    await this.page.locator('.productinfo').first().waitFor({ state: 'visible' });
     const product = this.page.locator(`.productinfo a.add-to-cart[data-product-id="${productId}"]`).first();
     await product.scrollIntoViewIfNeeded();
     await product.click();

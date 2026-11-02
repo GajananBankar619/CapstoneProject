@@ -41,7 +41,7 @@ export class ContactUsPage extends BasePage {
   }
 
   getSuccessMessage(): Locator {
-    return this.page.locator('.alert-success');
+    return this.page.locator('.status.alert.alert-success');
   }
 
   async clickHome(): Promise<void> {
