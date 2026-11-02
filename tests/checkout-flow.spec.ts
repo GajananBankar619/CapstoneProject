@@ -17,6 +17,7 @@ test.describe('Checkout Flow', () => {
 
     await expect(page.locator('.navbar-nav')).toContainText(`Logged in as ${authUserName}`);
 
+    await page.locator('.productinfo').first().waitFor({ state: 'visible' });
     const addToCartButton1 = page.locator('.productinfo a.add-to-cart[data-product-id="1"]').first();
     await addToCartButton1.scrollIntoViewIfNeeded();
     await addToCartButton1.click();

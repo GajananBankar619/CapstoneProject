@@ -6,6 +6,8 @@ import { test, expect } from '../fixtures';
 import { blockAds } from '../utils/ad-blocker';
 
 test.describe('Accessibility Audit', () => {
+  test.setTimeout(60000);
+
   test('should audit homepage accessibility and report violations', async ({ page }) => {
     await blockAds(page);
     await page.goto('https://automationexercise.com/');
