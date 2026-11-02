@@ -1,0 +1,38 @@
+[
+  {
+    "name": "TestUser",
+    "password": "Test@12345",
+    "title": "Mr",
+    "birthDay": "15",
+    "birthMonth": "June",
+    "birthYear": "1990",
+    "firstName": "Test",
+    "lastName": "User",
+    "company": "Perficient",
+    "address1": "123 Main Street",
+    "address2": "Suite 100",
+    "country": "United States",
+    "state": "Texas",
+    "city": "Dallas",
+    "zipcode": "75201",
+    "mobileNumber": "5551234567"
+  },
+  {
+    "name": "AnotherUser",
+    "password": "Pass@67890",
+    "title": "Mrs",
+    "birthDay": "20",
+    "birthMonth": "March",
+    "birthYear": "1985",
+    "firstName": "Another",
+    "lastName": "Tester",
+    "company": "TestCorp",
+    "address1": "456 Oak Avenue",
+    "address2": "",
+    "country": "Canada",
+    "state": "Ontario",
+    "city": "Toronto",
+    "zipcode": "M5V3A1",
+    "mobileNumber": "4161234567"
+  }
+]

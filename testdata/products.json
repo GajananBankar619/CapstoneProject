@@ -1,0 +1,11 @@
+{
+  "searchTerms": [
+    { "term": "top", "minExpectedResults": 3 },
+    { "term": "tshirt", "minExpectedResults": 2 },
+    { "term": "jeans", "minExpectedResults": 1 }
+  ],
+  "cartProducts": [
+    { "id": 1, "name": "Blue Top", "price": "Rs. 500" },
+    { "id": 2, "name": "Men Tshirt", "price": "Rs. 400" }
+  ]
+}

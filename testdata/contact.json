@@ -1,0 +1,8 @@
+[
+  {
+    "name": "John Doe",
+    "email": "john@test.com",
+    "subject": "Test Inquiry",
+    "message": "This is a test message for automation testing."
+  }
+]
