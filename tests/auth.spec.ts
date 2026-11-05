@@ -58,7 +58,7 @@ test.describe('User Authentication', () => {
     const userData = usersData[0];
     const email = uniqueEmail(userData.name.toLowerCase());
 
-    await request.post(`${envConfig.baseUrl}/api/createAccount`, {
+    const createResponse = await request.post(`${envConfig.baseUrl}/api/createAccount`, {
       form: {
         name: userData.name,
         email: email,
@@ -79,6 +79,7 @@ test.describe('User Authentication', () => {
         mobile_number: userData.mobileNumber,
       },
     });
+    expect(createResponse.ok(), 'API createAccount request failed').toBeTruthy();
 
     await loginPage.goto();
     await expect(loginPage.getLoginFormHeading()).toContainText('Login to your account');

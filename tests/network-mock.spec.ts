@@ -2,9 +2,11 @@
 // ABOUTME: Intercepts product list API and verifies the page renders mocked data.
 
 import { test, expect } from '../fixtures';
+import { blockAds } from '../utils/ad-blocker';
 
 test.describe('Network Interception and Mocking', () => {
   test('should display mocked product data when API is intercepted', async ({ page }) => {
+    await blockAds(page);
     const mockedProducts = {
       responseCode: 200,
       products: [
@@ -33,7 +35,7 @@ test.describe('Network Interception and Mocking', () => {
       });
     });
 
-    await page.goto('https://automationexercise.com/products');
+    await page.goto('/products');
 
     await expect(page.locator('.title.text-center')).toContainText('All Products');
 
@@ -43,6 +45,7 @@ test.describe('Network Interception and Mocking', () => {
   });
 
   test('should intercept and verify search API request', async ({ page }) => {
+    await blockAds(page);
     const searchRequests: string[] = [];
 
     await page.route('**/api/searchProduct', (route, request) => {
@@ -50,7 +53,7 @@ test.describe('Network Interception and Mocking', () => {
       route.continue();
     });
 
-    await page.goto('https://automationexercise.com/products');
+    await page.goto('/products');
     await page.locator('#search_product').fill('jeans');
     await page.locator('#submit_search').click();
 

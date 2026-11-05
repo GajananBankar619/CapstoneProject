@@ -4,6 +4,7 @@
 import { test, expect } from '../fixtures';
 
 test.describe('Product Search and Cart', () => {
+  test.setTimeout(60000);
   test('should search for products and add/remove from cart', async ({
     productsPage,
     homePage,

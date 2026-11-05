@@ -16,6 +16,8 @@ export interface AuthFixtures {
 }
 
 export function createAuthFixtures() {
+  let registeredEmail = '';
+
   return {
     authenticatedPage: async (
       { browser }: { browser: import('@playwright/test').Browser },
@@ -23,11 +25,13 @@ export function createAuthFixtures() {
     ) => {
       const userData = loadTestData<UserTestData[]>('users.json')[0];
       const email = uniqueEmail(userData.name.toLowerCase());
+      registeredEmail = email;
       const context: BrowserContext = await browser.newContext();
       const page: Page = await context.newPage();
       await blockAds(page);
 
       await page.goto(`${envConfig.baseUrl}/login`);
+      await page.locator('.signup-form').waitFor({ state: 'visible', timeout: 15000 });
       await page.locator('[data-qa="signup-name"]').fill(userData.name);
       await page.locator('[data-qa="signup-email"]').fill(email);
       await page.locator('[data-qa="signup-button"]').click();
@@ -55,11 +59,15 @@ export function createAuthFixtures() {
 
       const apiContext = await page.context().request;
       await deleteUserViaApi(apiContext, email, userData.password);
+      registeredEmail = '';
       await context.close();
     },
 
-    authUserEmail: async ({}, use: (r: string) => Promise<void>) => {
-      await use('');
+    authUserEmail: async (
+      { authenticatedPage }: { authenticatedPage: Page },
+      use: (r: string) => Promise<void>,
+    ) => {
+      await use(registeredEmail);
     },
 
     authUserName: async ({}, use: (r: string) => Promise<void>) => {

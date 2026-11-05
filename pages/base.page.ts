@@ -6,21 +6,13 @@ import { blockAds } from '../utils/ad-blocker';
 
 export abstract class BasePage {
   protected page: Page;
-  private adsBlocked = false;
 
   constructor(page: Page) {
     this.page = page;
   }
 
-  async ensureAdsBlocked(): Promise<void> {
-    if (!this.adsBlocked) {
-      await blockAds(this.page);
-      this.adsBlocked = true;
-    }
-  }
-
   async navigateTo(path: string): Promise<void> {
-    await this.ensureAdsBlocked();
+    await blockAds(this.page);
     await this.page.goto(path, { waitUntil: 'domcontentloaded' });
   }
 
@@ -39,6 +31,7 @@ export abstract class BasePage {
 
   async clickLogout(): Promise<void> {
     await this.clickNavLink('Logout');
+    await this.page.waitForURL(/\/login/);
   }
 
   async clickDeleteAccount(): Promise<void> {
