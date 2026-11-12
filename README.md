@@ -18,13 +18,13 @@ npm test
 ## Project Structure
 
 ```
-config/          Environment configuration (base URL, timeouts)
-fixtures/        Custom Playwright fixtures (page objects, auth, test data)
-pages/           Page Object Model classes
-tests/           Test specifications (8 test cases)
-testdata/        JSON test data for data-driven testing
-utils/           Reusable utilities (ad blocker, API helpers, random generators)
-reports/         Execution reports output (gitignored)
+config/              Environment configuration (base URL, timeouts)
+fixtures/            Custom Playwright fixtures (page objects, auth, test data)
+pages/               Page Object Model classes
+tests/               Test specifications (12 test cases across 7 spec files)
+testdata/            JSON test data for data-driven testing
+utils/               Reusable utilities (ad blocker, API helpers, random generators)
+playwright-report/   HTML execution reports (gitignored)
 ```
 
 ## Architecture
@@ -99,11 +99,11 @@ Unique emails are generated at runtime via `utils/random.ts` to prevent collisio
 
 ## Accessibility Testing
 
-Uses `@axe-core/playwright` to run WCAG 2.0 AA audits. Tests check for zero critical/serious violations on the homepage, login page, and products page.
+Uses `@axe-core/playwright` to run WCAG 2.0 AA audits. Tests scan the homepage, login page, and products page, filtering for critical and serious violations and logging a summary.
 
 ## Visual Regression Testing
 
-Uses Playwright's built-in `toHaveScreenshot()` for element-scoped screenshot comparison. First run generates baseline images in `tests/__snapshots__/`. Subsequent runs compare against baselines.
+Uses Playwright's built-in `toHaveScreenshot()` for element-scoped screenshot comparison. First run generates baseline images in `tests/visual-regression.spec.ts-snapshots/`. Subsequent runs compare against baselines.
 
 Update baselines: `npx playwright test --update-snapshots`
 
@@ -132,7 +132,3 @@ npx playwright show-trace <trace.zip> # View captured trace
 ```bash
 npm run report                        # Open HTML report in browser
 ```
-
-## AI-Assisted Development
-
-This framework was developed with assistance from Claude Code (Claude Opus 4.6). The AI was used for framework architecture design, page object scaffolding, and test case generation. All generated code was reviewed and adapted to match the target site's actual DOM structure and behavior patterns.
